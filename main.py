@@ -2,22 +2,31 @@
 ETL-CRUD script
 """
 
+import os
 from mylib.extract import extract
 from mylib.transform_load import load
 from mylib.query import create_CRUD, read_CRUD, update_CRUD, delete_CRUD
 
-def convert_log_to_markdown(log_file="operations_log.txt", markdown_file="operations_log.md"):
+
+def convert_log_to_markdown(
+    log_file="operations_log.txt", markdown_file="operations_log.md"
+):
     """Convert the log file to a markdown file."""
     with open(log_file, "r") as log, open(markdown_file, "w") as md:
         md.write("# Operations Log\n\n")
         for line in log:
             md.write(f"{line}\n")
 
+
 def main():
     # Define file paths and database name
     dataset_url = "https://raw.githubusercontent.com/nogibjj/yijia_ids706_miniProj3/refs/heads/main/rdu-weather-history.csv"
     csv_file_path = "data/rdu-weather-history.csv"
     database_path = "WeatherDB.db"
+
+    # Ensure the 'data' directory exists
+    if not os.path.exists("data"):
+        os.makedirs("data")
 
     # Step 1: Extract
     print("Extracting data from the source URL...")
@@ -32,8 +41,7 @@ def main():
     # Create
     print("Creating a new record...")
     create_CRUD(
-        database_path, 
-        ("2024-10-03", 59.0, 77.5, 0.0, 0.0, 0.0, 12.0)
+        database_path, ("2024-10-03", 59.0, 77.5, 0.0, 0.0, 0.0, 12.0)
     )  # Example record for testing
 
     # Read

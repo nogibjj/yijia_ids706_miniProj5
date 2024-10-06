@@ -1,42 +1,55 @@
-## SQLite Lab
+# yijia_ids706_miniProj5
 
-![4 17-etl-sqlite-RAW](https://github.com/nogibjj/sqlite-lab/assets/58792/b39b21b4-ccb4-4cc4-b262-7db34492c16d)
+## Python Template
 
+This project is designed to 
 
-
-### Lab:
-
-* Use an AI Assistant, but use a different one then you used from a previous lab (Anthropic's Claud, Bard, Copilot, CodeWhisperer, Colab AI, etc)
-* ETL-Query:  [E] Extract a dataset from URL, [T] Transform, [L] Load into SQLite Database and [Q] Query
-For the ETL-Query lab:
-* [E] Extract a dataset from a URL like Kaggle or data.gov. JSON or CSV formats tend to work well.
-* [T] Transform the data by cleaning, filtering, enriching, etc to get it ready for analysis.
-* [L] Load the transformed data into a SQLite database table using Python's sqlite3 module.
-* [Q] Write and execute SQL queries on the SQLite database to analyze and retrieve insights from the data.
-
-#### Tasks:
-
-* Fork this project and get it to run
-* Make the query more useful and not a giant mess that prints to screen
-* Convert the main.py into a command-line tool that lets you run each step independantly
-* Fork this project and do the same thing for a new dataset you choose
-* Make sure your project passes lint/tests and has a built badge
-* Include an architectural diagram showing how the project works
-
-#### Reflection Questions
-
-* What challenges did you face when extracting, transforming, and loading the data? How did you overcome them?
-* What insights or new knowledge did you gain from querying the SQLite database?
-* How can SQLite and SQL help make data analysis more efficient? What are the limitations?
-* What AI assistant did you use and how did it compare to others you've tried? What are its strengths and weaknesses?
-* If you could enhance this lab, what would you add or change? What other data would be interesting to load and query?
-
-##### Challenge Exercises
-
-* Add more transformations to the data before loading it into SQLite. Ideas: join with another dataset, aggregate by categories, normalize columns.
-* Write a query to find correlated fields in the data. Print the query results nicely formatted.
-* Create a second table in the SQLite database and write a join query with the two tables.
-* Build a simple Flask web app that runs queries on demand and displays results.
-* Containerize the application using Docker so the database and queries can be portable
+## CI/CD Badge
 
 
+## File Structure
+
+- **`.devcontainer/`**: Contains the development container configuration (`devcontainer.json` and a Dockerfile) to ensure a consistent development environment.
+- **`Makefile`**: Provides commands for setup, testing, linting, and formatting the project.
+- **`.github/workflows/`**: Contains CI/CD workflows for GitHub, which trigger actions like setup, linting, and testing when code is pushed to the repository.
+- **`rdu-weather-history.csv`**: Contains weather data for the Durham region, used as the dataset for analysis.
+- **`summary_report.md`**: A generated report with summary statistics (mean, median, standard deviation), visualizations, and a comparison between Pandas and Polars for data analysis performance.
+
+## Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone git@github.com:nogibjj/yijia_ids706_miniProj3.git
+```
+
+### 2. Open the Repository in Visual Studio Code
+
+- Reopen in the container using the .devcontainer configuration.
+- Rebuild the container if necessary, ensuring Docker is running on your computer.
+
+### 3. Install dependencies
+Run the following command to install all required dependencies:
+
+```bash
+make install
+```
+
+## Usage
+- make install: Installs dependencies specified in requirements.txt.
+- make format: Formats Python files using Black.
+- make lint: Lints Python files using Pylint, ignoring specific patterns.
+- make test: Runs tests using pytest and generates a coverage report.
+- make clean: Removes pytest cache.
+- make generate_report: Generates a summary report in Markdown format that includes descriptive statistics, visualizations, and a Pandas vs Polars performance comparison using the profiler.
+
+## CI/CD Setup
+- Location: .github/workflows/
+- Description: Contains GitHub Actions workflows for CI/CD, which automatically run setup, lint, and test actions on pushes to the GitHub repository.
+
+## Summary Report Generation
+The CI/CD pipeline automatically generates a Markdown report using Polars to calculate summary statistics such as mean, median, and standard deviation. It also generates a visualization from the dataset.
+
+Additionally, the Profiler benchmark compares the performance of Pandas and Polars when running the same descriptive statistics tasks. The comparison is included in the report to provide insights into the performance benefits of Polars over Pandas.
+
+The report is committed and pushed back to the repository, making it easily accessible for review and sharing.
