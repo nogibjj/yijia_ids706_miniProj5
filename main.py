@@ -8,7 +8,6 @@ from mylib.transform_load import load
 from mylib.query import create_CRUD, read_CRUD, update_CRUD, delete_CRUD
 
 
-
 def main():
     # Define file paths and database name
     dataset_url = "https://raw.githubusercontent.com/nogibjj/yijia_ids706_miniProj3/refs/heads/main/rdu-weather-history.csv"
@@ -57,6 +56,7 @@ def main():
     print("Reading records after deletion...")
     read_results_after_delete = read_CRUD(database_path, "2024-10-03")
     print(f"Read after delete: {read_results_after_delete}")
+
 
 if __name__ == "__main__":
     main()
