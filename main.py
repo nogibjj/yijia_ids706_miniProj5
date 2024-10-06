@@ -8,15 +8,6 @@ from mylib.transform_load import load
 from mylib.query import create_CRUD, read_CRUD, update_CRUD, delete_CRUD
 
 
-def convert_log_to_markdown(
-    log_file="operations_log.txt", markdown_file="operations_log.md"
-):
-    """Convert the log file to a markdown file."""
-    with open(log_file, "r") as log, open(markdown_file, "w") as md:
-        md.write("# Operations Log\n\n")
-        for line in log:
-            md.write(f"{line}\n")
-
 
 def main():
     # Define file paths and database name
@@ -66,10 +57,6 @@ def main():
     print("Reading records after deletion...")
     read_results_after_delete = read_CRUD(database_path, "2024-10-03")
     print(f"Read after delete: {read_results_after_delete}")
-
-    # Convert the log file to markdown
-    convert_log_to_markdown()
-
 
 if __name__ == "__main__":
     main()

@@ -6,6 +6,7 @@ This project is designed to
 
 ## CI/CD Badge
 
+[![CI](https://github.com/nogibjj/yijia_ids706_miniProj5/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/yijia_ids706_miniProj5/actions/workflows/cicd.yml)
 
 ## File Structure
 
