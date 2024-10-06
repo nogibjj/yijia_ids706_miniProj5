@@ -1,14 +1,17 @@
 import sqlite3
 
-# Define a global variable for the log file
+
 LOG_FILE = "operations_log.md"
 
-# Log each operation to the markdown file in a SQL code block format, including the parameters
+# Log each operation 
 def log_operation(query, detail="", params=None):
+    formatted_query = query
+    if params:
+        # Replace placeholders (?) with actual parameters in the query for logging purposes
+        formatted_query = query.replace("?", "{}").format(*params)
+    
     with open(LOG_FILE, "a") as log_file:
-        log_file.write(f"```sql\n{query}\n")
-        if params:
-            log_file.write(f"-- Parameters: {params}\n")
+        log_file.write(f"```sql\n{formatted_query}\n")
         log_file.write(f"-- {detail}\n```\n\n")
 
 
@@ -18,7 +21,6 @@ def create_CRUD(database, data):
     conn = sqlite3.connect(database)
     cursor = conn.cursor()
 
-    # Insert data into the database
     query = """
     INSERT INTO WeatherDB (Date, Temperature_Minimum, Temperature_Maximum, Precipitation, Snowfall, Snow_Depth, Average_Wind_Speed)
     VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -27,7 +29,6 @@ def create_CRUD(database, data):
     
     conn.commit()
 
-    # Log the operation in SQL format, including the data being inserted
     log_operation(query, f"Inserted data for Date {data[0]}", data)
 
     conn.close()
@@ -47,7 +48,6 @@ def read_CRUD(database, specific_date):
 
     conn.close()
 
-    # Log the operation in SQL format, including the specific date used in the query
     log_operation(query, f"Read records for Date: {specific_date}", (specific_date,))
 
     return results
@@ -68,7 +68,6 @@ def update_CRUD(database, date, new_data):
 
     conn.commit()
 
-    # Log the operation in SQL format, including the new data being used for the update
     log_operation(query, f"Updated data for Date {date}", (*new_data, date))
 
     conn.close()
@@ -85,7 +84,6 @@ def delete_CRUD(database, date):
 
     conn.commit()
 
-    # Log the operation in SQL format, including the specific date being deleted
     log_operation(query, f"Deleted record for Date {date}", (date,))
 
     conn.close()

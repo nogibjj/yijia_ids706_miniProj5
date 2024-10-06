@@ -2,7 +2,8 @@
 
 ## Python Template
 
-This project is designed to 
+This project demonstrates how to perform Extract, Transform, Load (ETL) operations, connect to a SQL database, and perform CRUD operations using Python. The dataset used in this project is weather history data for the Durham region.
+
 
 ## CI/CD Badge
 
@@ -13,15 +14,16 @@ This project is designed to
 - **`.devcontainer/`**: Contains the development container configuration (`devcontainer.json` and a Dockerfile) to ensure a consistent development environment.
 - **`Makefile`**: Provides commands for setup, testing, linting, and formatting the project.
 - **`.github/workflows/`**: Contains CI/CD workflows for GitHub, which trigger actions like setup, linting, and testing when code is pushed to the repository.
-- **`rdu-weather-history.csv`**: Contains weather data for the Durham region, used as the dataset for analysis.
-- **`summary_report.md`**: A generated report with summary statistics (mean, median, standard deviation), visualizations, and a comparison between Pandas and Polars for data analysis performance.
+- **`rdu-weather-history.csv`**: Weather data for the Durham region.
+- **`WeatherDB.db`**: The SQLite database created and manipulated in this project.
+- **`operations_log.md`**: A log of all SQL queries (INSERT, UPDATE, DELETE, and SELECT) performed during the CRUD operations.
 
 ## Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:nogibjj/yijia_ids706_miniProj3.git
+git clone git@github.com:nogibjj/yijia_ids706_miniProj5.git
 ```
 
 ### 2. Open the Repository in Visual Studio Code
@@ -42,15 +44,13 @@ make install
 - make lint: Lints Python files using Pylint, ignoring specific patterns.
 - make test: Runs tests using pytest and generates a coverage report.
 - make clean: Removes pytest cache.
-- make generate_report: Generates a summary report in Markdown format that includes descriptive statistics, visualizations, and a Pandas vs Polars performance comparison using the profiler.
+- make generate_and_push: Runs main.py to perform ETL and CRUD operations, generates a log, and pushes it to the repository.
 
 ## CI/CD Setup
 - Location: .github/workflows/
-- Description: Contains GitHub Actions workflows for CI/CD, which automatically run setup, lint, and test actions on pushes to the GitHub repository.
+- Description: Contains GitHub Actions workflows for CI/CD, which automatically run setup, linting, testing, and generate and push the log file when code is pushed to the repository.
 
-## Summary Report Generation
-The CI/CD pipeline automatically generates a Markdown report using Polars to calculate summary statistics such as mean, median, and standard deviation. It also generates a visualization from the dataset.
+## Operations Log
+The CI/CD pipeline automatically generates an operations_log.md file that logs all SQL queries performed during CRUD operations.
 
-Additionally, the Profiler benchmark compares the performance of Pandas and Polars when running the same descriptive statistics tasks. The comparison is included in the report to provide insights into the performance benefits of Polars over Pandas.
-
-The report is committed and pushed back to the repository, making it easily accessible for review and sharing.
+The report is committed and pushed back to the repository for easy access and review.
