@@ -1,0 +1,19 @@
+CREATE: Inserted data for Date 2024-10-04
+READ: Read records from WeatherDB for Date: 2024-10-04
+READ: Read records from WeatherDB for Date: 2022-01-08
+UPDATE: Updated data for Date 2022-01-17
+READ: Read records from WeatherDB for Date: 2022-01-17
+DELETE: Deleted record for Date 2022-01-26
+READ: Read records from WeatherDB for Date: 2022-01-26
+CREATE: Inserted data for Date 2024-10-04
+READ: Read records from WeatherDB for Date: 2022-01-08
+UPDATE: Updated data for Date 2022-01-17
+DELETE: Deleted record for Date 2022-01-26
+CREATE: Inserted data for Date 2024-10-04
+READ: Read records from WeatherDB for Date: 2022-01-08
+UPDATE: Updated data for Date 2022-01-17
+DELETE: Deleted record for Date 2022-01-26
+CREATE: Inserted data for Date 2024-10-04
+READ: Read records from WeatherDB for Date: 2022-01-08
+UPDATE: Updated data for Date 2022-01-17
+DELETE: Deleted record for Date 2022-01-26
