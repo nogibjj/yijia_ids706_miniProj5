@@ -3,16 +3,18 @@ import sqlite3
 # Define a global variable for the log file
 LOG_FILE = "operations_log.md"
 
-# Log each operation to the markdown file in a SQL code block format
-def log_operation(operation, detail=""):
+# Log each operation to the markdown file in a SQL code block format, including the parameters
+def log_operation(query, detail="", params=None):
     with open(LOG_FILE, "a") as log_file:
-        log_file.write(f"```sql\n{operation}\n```\n\n")
+        log_file.write(f"```sql\n{query}\n")
+        if params:
+            log_file.write(f"-- Parameters: {params}\n")
+        log_file.write(f"-- {detail}\n```\n\n")
 
 
 # CREATE operation - Insert data into the database
 def create_CRUD(database, data):
     """Insert data into the WeatherDB table"""
-    # Connect to the database
     conn = sqlite3.connect(database)
     cursor = conn.cursor()
 
@@ -25,8 +27,8 @@ def create_CRUD(database, data):
     
     conn.commit()
 
-    # Log the operation in SQL format
-    log_operation(query, f"Inserted data for Date {data[0]}")
+    # Log the operation in SQL format, including the data being inserted
+    log_operation(query, f"Inserted data for Date {data[0]}", data)
 
     conn.close()
 
@@ -45,8 +47,8 @@ def read_CRUD(database, specific_date):
 
     conn.close()
 
-    # Log the operation in SQL format
-    log_operation(query, f"Read records from WeatherDB for Date: {specific_date}")
+    # Log the operation in SQL format, including the specific date used in the query
+    log_operation(query, f"Read records for Date: {specific_date}", (specific_date,))
 
     return results
 
@@ -66,8 +68,8 @@ def update_CRUD(database, date, new_data):
 
     conn.commit()
 
-    # Log the operation in SQL format
-    log_operation(query, f"Updated data for Date {date}")
+    # Log the operation in SQL format, including the new data being used for the update
+    log_operation(query, f"Updated data for Date {date}", (*new_data, date))
 
     conn.close()
 
@@ -83,7 +85,7 @@ def delete_CRUD(database, date):
 
     conn.commit()
 
-    # Log the operation in SQL format
-    log_operation(query, f"Deleted record for Date {date}")
+    # Log the operation in SQL format, including the specific date being deleted
+    log_operation(query, f"Deleted record for Date {date}", (date,))
 
     conn.close()
